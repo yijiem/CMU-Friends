@@ -55,6 +55,8 @@ bool firstLoad = YES;
         firstLoad = NO;
     }
 }
+- (IBAction)showNearByFriend:(id)sender {
+}
 
 // Show the location of my friend and me.
 // Also focus the area to be my standing place.

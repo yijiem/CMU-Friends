@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0A08BA190FCA7A00A0BE72 /* all_people.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A0A08B8190FCA7A00A0BE72 /* all_people.jpg */; };
+		2A0A08BB190FCA7A00A0BE72 /* my position.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A0A08B9190FCA7A00A0BE72 /* my position.jpg */; };
 		2ACA1BDE190DE68200F0ADD2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACA1BDD190DE68200F0ADD2 /* MapKit.framework */; };
 		2AD587AF190F57F000F20866 /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD587AE190F57F000F20866 /* people.png */; };
 		2AD587B2190F580B00F20866 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD587B1190F580B00F20866 /* MapViewController.m */; };
@@ -52,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A0A08B8190FCA7A00A0BE72 /* all_people.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = all_people.jpg; sourceTree = "<group>"; };
+		2A0A08B9190FCA7A00A0BE72 /* my position.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "my position.jpg"; sourceTree = "<group>"; };
 		2ACA1BDD190DE68200F0ADD2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2AD587AE190F57F000F20866 /* people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people.png; sourceTree = "<group>"; };
 		2AD587B0190F580B00F20866 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 		610519F919077B850023AE22 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2A0A08B8190FCA7A00A0BE72 /* all_people.jpg */,
+				2A0A08B9190FCA7A00A0BE72 /* my position.jpg */,
 				2AD587AE190F57F000F20866 /* people.png */,
 				610519FA19077B850023AE22 /* CMUFriends-Info.plist */,
 				610519FB19077B850023AE22 /* InfoPlist.strings */,
@@ -314,6 +320,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				61051A0B19077B850023AE22 /* Images.xcassets in Resources */,
+				2A0A08BB190FCA7A00A0BE72 /* my position.jpg in Resources */,
+				2A0A08BA190FCA7A00A0BE72 /* all_people.jpg in Resources */,
 				610519FD19077B850023AE22 /* InfoPlist.strings in Resources */,
 				2AD587AF190F57F000F20866 /* people.png in Resources */,
 				61051A0619077B850023AE22 /* Main.storyboard in Resources */,

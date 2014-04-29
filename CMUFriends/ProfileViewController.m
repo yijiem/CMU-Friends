@@ -27,6 +27,7 @@
     return self;
 }
 
+// send facebook message to the specific user.
 - (IBAction) sendFacebookMessage  {
     
     NSString *graphPath = [NSString stringWithFormat:@"/%@", facebookID.text];

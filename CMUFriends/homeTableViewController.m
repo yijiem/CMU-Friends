@@ -9,6 +9,9 @@
 #import "homeTableViewController.h"
 #import "NearByPeople.h"
 
+// added by yu zhang. To transfer the data from homeTableView to MapViewController.
+#import "MapViewController.h"
+
 @interface homeTableViewController ()
 
 @end
@@ -34,11 +37,25 @@
 }
 
 // added by yu zhang.
-// press the line to go the profile file.
+// press one line item to go the profile file.
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // jump to the profile page of the user.
     [self performSegueWithIdentifier:@"fromUserListToProfile" sender:self];
+}
+
+// when press the button "Show in the map", perform this.
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"fromShowInMapToMap"]){
+        MapViewController *controller = (MapViewController *)segue.destinationViewController;
+        controller.sortedNearByPeople = NULL;
+    }
+}
+
+// added by yu zhang, when press the button of 
+- (IBAction)showPeopleInMap:(id)sender {
+    
+    NSLog(@"GO TO THE MAP.");
 }
 
 /* every time user load the home view or pull down the table list will call update() */

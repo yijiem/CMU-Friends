@@ -26,5 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *zoomIn;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *changeMapType;
 
+// added by yu zhang. To import the sorted nearby people from the HometableView.
+@property (strong, atomic) NSMutableArray *sortedNearByPeople; // hold sortedNearByPeople list
 
 @end

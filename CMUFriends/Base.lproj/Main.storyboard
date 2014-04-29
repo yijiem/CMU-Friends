@@ -80,7 +80,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="300" y="131"/>
+            <point key="canvasLocation" x="-732" y="-53"/>
         </scene>
         <!--Home Table View Controller-->
         <scene sceneID="7Jm-uU-2Ks">
@@ -90,6 +90,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lCN-ej-aNN">
+                            <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Show in map">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="showPeopleInMap:" destination="LRD-PN-Me6" eventType="touchDown" id="lD3-28-DQB"/>
+                                <segue destination="zTu-qO-x8n" kind="push" identifier="fromShowInMapToMap" id="Twf-ib-Azz"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="show distance" textLabel="tzj-O7-knk" detailTextLabel="PYc-gS-GFD" style="IBUITableViewCellStyleValue1" id="KPq-cA-1dX">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
@@ -131,14 +142,15 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="showInMap" destination="lCN-ej-aNN" id="Y9U-Nt-ZN0"/>
                         <segue destination="Mao-KY-IEH" kind="push" identifier="fromUserListToProfile" id="nqz-cY-v3Y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfK-xa-0BX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1210" y="124"/>
+            <point key="canvasLocation" x="-66" y="364"/>
         </scene>
-        <!--Sign Up View Controller-->
+        <!--Sign Up View Controller - Register-->
         <scene sceneID="hC2-pa-80i">
             <objects>
                 <viewController id="f1e-aS-QUx" customClass="signUpViewController" sceneMemberID="viewController">
@@ -211,7 +223,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="dc8-I1-aX8"/>
+                    <navigationItem key="navigationItem" title="Register" id="dc8-I1-aX8"/>
                     <connections>
                         <outlet property="andrewIdTextField" destination="hNz-mv-rbb" id="4Vc-lu-p5s"/>
                         <outlet property="emailTextField" destination="NFR-GN-Lx7" id="XpC-dy-6GB"/>
@@ -222,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b23-4t-Trr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="790" y="124"/>
+            <point key="canvasLocation" x="-66" y="-376"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Pee-fi-P4O">
@@ -240,7 +252,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gUp-xL-nsB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-170" y="131"/>
+            <point key="canvasLocation" x="-1202" y="-53"/>
         </scene>
         <!--Map View Controller - Map-->
         <scene sceneID="3bn-fg-AsB">
@@ -258,12 +270,17 @@
                                 <rect key="frame" x="19" y="524" width="296" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="My Location" id="amS-Eh-8i9">
+                                    <barButtonItem tag="-1" systemItem="refresh" id="amS-Eh-8i9">
                                         <connections>
                                             <action selector="zoomIn:" destination="zTu-qO-x8n" id="7tJ-yn-0Ro"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Satellite/Map" id="A0C-9N-rhX">
+                                    <barButtonItem systemItem="search" id="ewl-9r-mAH">
+                                        <connections>
+                                            <action selector="showNearByFriend:" destination="zTu-qO-x8n" id="6N5-O4-slD"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Type" id="A0C-9N-rhX">
                                         <connections>
                                             <action selector="changeMapType:" destination="zTu-qO-x8n" id="UXG-MP-IW9"/>
                                         </connections>
@@ -293,7 +310,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8x-YG-Vv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="310" y="834"/>
+            <point key="canvasLocation" x="-438" y="1258"/>
         </scene>
         <!--Profile View Controller - Profile-->
         <scene sceneID="VWF-e1-4GK">
@@ -393,7 +410,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwH-ls-o1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-170" y="834"/>
+            <point key="canvasLocation" x="-1190" y="775"/>
         </scene>
     </scenes>
     <resources>
@@ -405,6 +422,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hcb-sf-Br3"/>
+        <segue reference="fhD-5k-6gZ"/>
+        <segue reference="Twf-ib-Azz"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -11,6 +11,9 @@
 
 @interface homeTableViewController : UITableViewController
                                      <UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UIButton *showInMap;
+
 @property (strong, atomic) NSMutableArray *sortedNearByPeople; // hold sortedNearByPeople list
 @property (strong, atomic) NSMutableArray *distance; // hold distance
 @end
