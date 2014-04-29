@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2ACA1BDE190DE68200F0ADD2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACA1BDD190DE68200F0ADD2 /* MapKit.framework */; };
+		2AD587AF190F57F000F20866 /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD587AE190F57F000F20866 /* people.png */; };
+		2AD587B2190F580B00F20866 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD587B1190F580B00F20866 /* MapViewController.m */; };
+		2AD587B5190F581E00F20866 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD587B4190F581E00F20866 /* ProfileViewController.m */; };
 		610519F319077B850023AE22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 610519F219077B850023AE22 /* Foundation.framework */; };
 		610519F519077B850023AE22 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 610519F419077B850023AE22 /* CoreGraphics.framework */; };
 		610519F719077B850023AE22 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 610519F619077B850023AE22 /* UIKit.framework */; };
@@ -49,6 +52,11 @@
 
 /* Begin PBXFileReference section */
 		2ACA1BDD190DE68200F0ADD2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2AD587AE190F57F000F20866 /* people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people.png; sourceTree = "<group>"; };
+		2AD587B0190F580B00F20866 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		2AD587B1190F580B00F20866 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		2AD587B3190F581E00F20866 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		2AD587B4190F581E00F20866 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		610519EF19077B850023AE22 /* CMUFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CMUFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		610519F219077B850023AE22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		610519F419077B850023AE22 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -165,6 +173,10 @@
 		610519F819077B850023AE22 /* CMUFriends */ = {
 			isa = PBXGroup;
 			children = (
+				2AD587B3190F581E00F20866 /* ProfileViewController.h */,
+				2AD587B4190F581E00F20866 /* ProfileViewController.m */,
+				2AD587B0190F580B00F20866 /* MapViewController.h */,
+				2AD587B1190F580B00F20866 /* MapViewController.m */,
 				61051A0119077B850023AE22 /* loginAppDelegate.h */,
 				61051A0219077B850023AE22 /* loginAppDelegate.m */,
 				61051A0419077B850023AE22 /* Main.storyboard */,
@@ -184,6 +196,7 @@
 		610519F919077B850023AE22 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2AD587AE190F57F000F20866 /* people.png */,
 				610519FA19077B850023AE22 /* CMUFriends-Info.plist */,
 				610519FB19077B850023AE22 /* InfoPlist.strings */,
 				610519FE19077B850023AE22 /* main.m */,
@@ -298,6 +311,7 @@
 			files = (
 				61051A0B19077B850023AE22 /* Images.xcassets in Resources */,
 				610519FD19077B850023AE22 /* InfoPlist.strings in Resources */,
+				2AD587AF190F57F000F20866 /* people.png in Resources */,
 				61051A0619077B850023AE22 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,10 +333,12 @@
 			files = (
 				61CF6B2E190DED09009CA42E /* signUpViewController.m in Sources */,
 				61051A0319077B850023AE22 /* loginAppDelegate.m in Sources */,
+				2AD587B5190F581E00F20866 /* ProfileViewController.m in Sources */,
 				61051A0919077B850023AE22 /* loginViewController.m in Sources */,
 				61F25F63190F169600EFB8D7 /* homeTableViewController.m in Sources */,
 				610519FF19077B850023AE22 /* main.m in Sources */,
 				61F25F5F190F015300EFB8D7 /* NearByPeople.m in Sources */,
+				2AD587B2190F580B00F20866 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
