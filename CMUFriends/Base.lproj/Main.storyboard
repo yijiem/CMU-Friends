@@ -143,7 +143,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfK-xa-0BX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="802" y="131"/>
+            <point key="canvasLocation" x="1210" y="124"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="hC2-pa-80i">
@@ -229,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b23-4t-Trr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="802" y="-640"/>
+            <point key="canvasLocation" x="790" y="124"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Pee-fi-P4O">
@@ -247,7 +247,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gUp-xL-nsB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-210" y="131"/>
+            <point key="canvasLocation" x="-170" y="131"/>
         </scene>
         <!--Map View Controller - Map-->
         <scene sceneID="3bn-fg-AsB">
@@ -277,7 +277,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vOq-0V-aL3">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vOq-0V-aL3">
                                 <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
@@ -300,7 +300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8x-YG-Vv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749" y="806"/>
+            <point key="canvasLocation" x="310" y="834"/>
         </scene>
         <!--Profile View Controller - Profile-->
         <scene sceneID="VWF-e1-4GK">
@@ -358,6 +358,9 @@
                                 <state key="normal" title="Send facebook message">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendFacebookMessage" destination="Mao-KY-IEH" eventType="touchDown" id="Li4-xk-Ca3"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x57-wR-6Mf">
                                 <rect key="frame" x="114" y="425" width="93" height="30"/>
@@ -394,7 +397,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwH-ls-o1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="269" y="806"/>
+            <point key="canvasLocation" x="-170" y="834"/>
         </scene>
     </scenes>
     <resources>
@@ -406,6 +409,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hcb-sf-Br3"/>
+        <segue reference="fhD-5k-6gZ"/>
     </inferredMetricsTieBreakers>
 </document>

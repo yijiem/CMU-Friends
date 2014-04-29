@@ -8,6 +8,9 @@
 
 #import "ProfileViewController.h"
 
+// connect with faceboook.
+#import <FacebookSDK/FacebookSDK.h>
+
 @interface ProfileViewController ()
 
 @end
@@ -21,6 +24,31 @@
         // Custom initialization
     }
     return self;
+}
+
+- (IBAction) sendFacebookMessage  {
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://inchoo.net"]];
+    
+    /* make the API call */
+    [FBRequestConnection startWithGraphPath:@"/me"
+                                 parameters:nil
+                                 HTTPMethod:@"GET"
+                          completionHandler:^(
+                                              FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error
+                                              ) {
+                              /* handle the result */
+                              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"fb-messenger://"]];
+
+                          }];
+    
+    
+    //NSString *userID = @"zhang.cmu";
+    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"fb-messenger://"]];
+
+    
+    //    fb-messenger://user-thread/{user-id}
 }
 
 - (void)viewDidLoad
