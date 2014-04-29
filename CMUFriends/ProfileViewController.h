@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ProfileViewController : UIViewController
-// implement the Table framework.
-<UITableViewDelegate, UITableViewDataSource>
+
 
 @end

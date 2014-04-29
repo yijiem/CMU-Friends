@@ -11,6 +11,7 @@
 		2AD587AF190F57F000F20866 /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD587AE190F57F000F20866 /* people.png */; };
 		2AD587B2190F580B00F20866 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD587B1190F580B00F20866 /* MapViewController.m */; };
 		2AD587B5190F581E00F20866 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD587B4190F581E00F20866 /* ProfileViewController.m */; };
+		2AD587B7190F710500F20866 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD587B6190F710500F20866 /* FacebookSDK.framework */; };
 		610519F319077B850023AE22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 610519F219077B850023AE22 /* Foundation.framework */; };
 		610519F519077B850023AE22 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 610519F419077B850023AE22 /* CoreGraphics.framework */; };
 		610519F719077B850023AE22 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 610519F619077B850023AE22 /* UIKit.framework */; };
@@ -57,6 +58,7 @@
 		2AD587B1190F580B00F20866 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		2AD587B3190F581E00F20866 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		2AD587B4190F581E00F20866 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		2AD587B6190F710500F20866 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		610519EF19077B850023AE22 /* CMUFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CMUFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		610519F219077B850023AE22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		610519F419077B850023AE22 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -110,6 +112,7 @@
 				610519F519077B850023AE22 /* CoreGraphics.framework in Frameworks */,
 				61FA3B98190DCCBB0003B2AC /* CFNetwork.framework in Frameworks */,
 				61F25F59190EC6BB00EFB8D7 /* Parse.framework in Frameworks */,
+				2AD587B7190F710500F20866 /* FacebookSDK.framework in Frameworks */,
 				61FA3B96190DCCA10003B2AC /* AudioToolbox.framework in Frameworks */,
 				610519F719077B850023AE22 /* UIKit.framework in Frameworks */,
 				610519F319077B850023AE22 /* Foundation.framework in Frameworks */,
@@ -151,6 +154,7 @@
 		610519F119077B850023AE22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2AD587B6190F710500F20866 /* FacebookSDK.framework */,
 				61F25F58190EC6BB00EFB8D7 /* Parse.framework */,
 				2ACA1BDD190DE68200F0ADD2 /* MapKit.framework */,
 				61FA3BA5190DCD150003B2AC /* SystemConfiguration.framework */,
