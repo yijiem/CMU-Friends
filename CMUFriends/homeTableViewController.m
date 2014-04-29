@@ -8,6 +8,7 @@
 
 #import "homeTableViewController.h"
 #import "NearByPeople.h"
+#import "ProfileViewController.h"
 
 // added by yu zhang. To transfer the data from homeTableView to MapViewController.
 #import "MapViewController.h"
@@ -36,21 +37,58 @@
     [self.refreshControl endRefreshing];
 }
 
+
 // added by yu zhang.
+
 // press one line item to go the profile file.
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // jump to the profile page of the user.
-    [self performSegueWithIdentifier:@"fromUserListToProfile" sender:self];
+    [self performSegueWithIdentifier:@"select a cell" sender:self];
 }
 
-// when press the button "Show in the map", perform this.
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // when press the button "Show in the map", perform this.
     if([segue.identifier isEqualToString:@"fromShowInMapToMap"]){
         MapViewController *controller = (MapViewController *)segue.destinationViewController;
         controller.sortedNearByPeople = NULL;
     }
+    
+    if([sender isKindOfClass:[UITableViewCell class]]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        if (indexPath) {
+            if ([segue.identifier isEqualToString:@"select a cell"]) {
+                if ([segue.destinationViewController isKindOfClass:[ProfileViewController class]]) {
+                    ProfileViewController *pvc = (ProfileViewController *) segue.destinationViewController;
+                    /* get user object on the selected row */
+                    PFUser *user = (PFUser *) [self.sortedNearByPeople objectAtIndex:indexPath.row];
+                    
+                    /* set up profile image */
+                    PFFile *theImage = [user objectForKey:@"image"];
+                    NSData *imageData = [theImage getData];
+                    UIImage *image = [UIImage imageWithData:imageData];
+                    pvc.profileImage = image;
+                    
+                    /* set up name, gender, facebookid, email */
+                    pvc.profileName =
+                    [NSString stringWithFormat:@"%@", [user objectForKey:@"name"]];
+                    pvc.profileGender =
+                    [NSString stringWithFormat:@"%@", [user objectForKey:@"gender"]];
+                    pvc.facebookID =
+                    [NSString stringWithFormat:@"%@", [user objectForKey:@"facebookID"]];
+                    pvc.profileEmail =
+                    [NSString stringWithFormat:@"%@", [user objectForKey:@"email"]];
+                    pvc.profileDepartment =
+                    [NSString stringWithFormat:@"%@", [user objectForKey:@"department"]];
+                    
+                }
+            }
+        }
+    }
 }
+
+
 
 // added by yu zhang, when press the button of 
 - (IBAction)showPeopleInMap:(id)sender {
@@ -73,8 +111,8 @@
     /* query User object from back-end except the current user */
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query whereKey:@"username" notEqualTo:[PFUser currentUser].username];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
+    NSArray *objects = [query findObjects];
+    
             // The find succeeded.
             NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
             // Do something with the found objects
@@ -93,18 +131,14 @@
             
             /* generate sorted distance array for display */
             self.distance = [NearByPeople calculateDistance:self.sortedNearByPeople targetedLocation:[[PFUser currentUser] objectForKey:@"location"]];
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.refreshControl beginRefreshing];
+    [self update];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,8 +176,19 @@
     cell.textLabel.text =
     [NSString stringWithFormat:@"%@", [[self.sortedNearByPeople objectAtIndex:indexPath.row] objectForKey:@"username"]];
     
-    cell.detailTextLabel.text =
-    [NSString stringWithFormat:@"%@", [self.distance objectAtIndex:indexPath.row]];
+    NSNumber *oneMile = [NSNumber numberWithDouble:1.0];
+    //NSNumber *fiveMile = [NSNumber numberWithDouble:5.0];
+    //NSNumber *tenMile = [NSNumber numberWithDouble:10.0];
+    //NSNumber *hundredMile = [NSNumber numberWithDouble:100.0];
+    
+    NSNumber *distance = [NSNumber numberWithDouble:[[self.distance objectAtIndex:indexPath.row] doubleValue]];
+    
+    if ([[self.distance objectAtIndex:indexPath.row] compare:oneMile] == NSOrderedAscending) {
+        cell.detailTextLabel.text = @"less than one mile...";
+    } else {
+        cell.detailTextLabel.text =
+            [NSString stringWithFormat:@"%.1f miles...", [distance doubleValue]];
+    }
     
     return cell;
 }

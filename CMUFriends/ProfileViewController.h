@@ -10,6 +10,11 @@
 
 @interface ProfileViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *facebookID;
+@property (strong, nonatomic) NSString *facebookID;
+@property (strong, nonatomic) UIImage *profileImage;
+@property (strong, nonatomic) NSString *profileName;
+@property (strong, nonatomic) NSString *profileGender;
+@property (strong, nonatomic) NSString *profileEmail;
+@property (strong, nonatomic) NSString *profileDepartment;
 
 @end

@@ -7,11 +7,16 @@
 //
 
 #import "ProfileViewController.h"
-
-// connect with faceboook.
-#import <FacebookSDK/FacebookSDK.h>
+#import <FacebookSDK/FacebookSDK.h> // connect with faceboook.
 
 @interface ProfileViewController ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameText;
+@property (weak, nonatomic) IBOutlet UILabel *genderText;
+@property (weak, nonatomic) IBOutlet UILabel *facebookText;
+@property (weak, nonatomic) IBOutlet UILabel *emailText;
+@property (weak, nonatomic) IBOutlet UILabel *departmentText;
 
 @end
 
@@ -30,7 +35,7 @@
 // send facebook message to the specific user.
 - (IBAction) sendFacebookMessage  {
     
-    NSString *graphPath = [NSString stringWithFormat:@"/%@", facebookID.text];
+    NSString *graphPath = [NSString stringWithFormat:@"/%@", facebookID];
     
     /* make the API call */
     [FBRequestConnection startWithGraphPath:graphPath
@@ -59,10 +64,21 @@
                           }];
 }
 
+- (void)updateView
+{
+    [self.imageView setImage:self.profileImage];
+    self.nameText.text = self.profileName;
+    self.genderText.text = self.profileGender;
+    self.facebookText.text = self.facebookID;
+    self.emailText.text = self.profileEmail;
+    self.departmentText.text = self.profileDepartment;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self updateView];
 }
 
 - (void)didReceiveMemoryWarning
