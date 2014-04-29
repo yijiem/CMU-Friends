@@ -11,5 +11,6 @@
 
 @interface homeTableViewController : UITableViewController
                                      <UITableViewDelegate, UITableViewDataSource>
-
+@property (strong, atomic) NSMutableArray *sortedNearByPeople; // hold sortedNearByPeople list
+@property (strong, atomic) NSMutableArray *distance; // hold distance
 @end

@@ -8,10 +8,13 @@
 
 #import "loginViewController.h"
 #import "homeTableViewController.h"
+#import "NearByPeople.h"
 
 @interface loginViewController ()
 @property (nonatomic, readonly, retain) IBOutlet UITextField *andrewIdTextField;
 @property (nonatomic, readonly, retain) IBOutlet UITextField *password;
+@property (strong, atomic) NSMutableArray *preloadedSortedPeople;
+@property (strong, atomic) NSMutableArray *preloadedDistance;
 @end
 
 @implementation loginViewController
@@ -41,6 +44,34 @@
                                     block:^(PFUser *user, NSError *error) {
                                     if (user) {
                                     // Do stuff after successful login.
+                                        
+                                        /* report current user's location to back-end when user login in */
+                                        [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+                                            if (!error) {
+                                                // do something with the new geoPoint
+                                                [[PFUser currentUser] setObject:geoPoint forKey:@"location"];
+                                                [[PFUser currentUser] saveInBackground];
+                                            }
+                                        }];
+                                        
+                                        /* pre-address data to fetch into home table view */
+                                        /* query User object from back-end except the current user */
+                                        PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+                                        [query whereKey:@"username" notEqualTo:[PFUser currentUser].username];
+                                        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                                            if (!error) {
+                                                
+                                                /* generate sorted near by people array for display */
+                                                self.preloadedSortedPeople = [NearByPeople sortByDistance:objects targetedLocation:[[PFUser currentUser] objectForKey:@"location"]];
+                                                
+                                                
+                                                /* generate sorted distance array for display */
+                                                self.preloadedDistance = [NearByPeople calculateDistance:self.preloadedSortedPeople targetedLocation:[[PFUser currentUser] objectForKey:@"location"]];
+                                            }
+                                        }];
+
+                                        
+                                        
                                         [self performSegueWithIdentifier:@"Login Success" sender:sender];
                                     } else {
                                     // The login failed. Check error to see why.
@@ -56,15 +87,18 @@
     }];
 }
 
-/*
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"Login Success"]) {
         if ([segue.destinationViewController isKindOfClass:[homeTableViewController class]]) {
             // do what you want to the next view
+            homeTableViewController *htvc = (homeTableViewController *)segue.destinationViewController;
+            htvc.sortedNearByPeople = self.preloadedSortedPeople;
+            htvc.distance = self.preloadedDistance;
         }
     }
 }
-*/
+
 
 @end

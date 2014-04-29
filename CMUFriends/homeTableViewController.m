@@ -11,9 +11,6 @@
 
 @interface homeTableViewController ()
 
-@property NSMutableArray *sortedNearByPeople; // hold sortedNearByPeople list
-@property NSMutableArray *distance; // hold distance
-
 @end
 
 @implementation homeTableViewController
@@ -27,10 +24,18 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (IBAction)refresh:(id)sender
 {
-    [super viewDidLoad];
-    
+    [self.refreshControl beginRefreshing];
+# warning block the main thread
+    [self update];
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+}
+
+/* every time user load the home view or pull down the table list will call update() */
+- (void)update
+{
     /* report current user's location to back-end when user login in */
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if (!error) {
@@ -69,6 +74,12 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,13 +99,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    NSLog(@"sortedNearByPeople.count = %lu", (unsigned long)self.sortedNearByPeople.count);
     return self.sortedNearByPeople.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"show distance"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"show distance"
+                             forIndexPath:indexPath];
     
     // Configure the cell...
     if (cell == nil) {
@@ -103,6 +116,7 @@
     
     cell.textLabel.text =
     [NSString stringWithFormat:@"%@", [[self.sortedNearByPeople objectAtIndex:indexPath.row] objectForKey:@"username"]];
+    
     cell.detailTextLabel.text =
     [NSString stringWithFormat:@"%@", [self.distance objectAtIndex:indexPath.row]];
     

@@ -127,13 +127,18 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="LRD-PN-Me6" id="2g7-c3-If6"/>
-                            <outlet property="delegate" destination="LRD-PN-Me6" id="HPL-VS-w9L"/>
+                            <outlet property="dataSource" destination="LRD-PN-Me6" id="ZBX-2R-zZG"/>
+                            <outlet property="delegate" destination="LRD-PN-Me6" id="8nG-La-FjQ"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="EWb-Mc-32A"/>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="vKg-m0-Rhd">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="K6Z-42-Wy3">
                         <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle"/>
+                        <connections>
+                            <action selector="refresh:" destination="LRD-PN-Me6" eventType="valueChanged" id="jXb-8m-q0O"/>
+                        </connections>
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfK-xa-0BX" userLabel="First Responder" sceneMemberID="firstResponder"/>
