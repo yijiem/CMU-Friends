@@ -40,12 +40,7 @@
 
 // added by yu zhang.
 
-// press one line item to go the profile file.
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // jump to the profile page of the user.
-    [self performSegueWithIdentifier:@"select a cell" sender:self];
-}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -53,6 +48,7 @@
     if([segue.identifier isEqualToString:@"fromShowInMapToMap"]){
         MapViewController *controller = (MapViewController *)segue.destinationViewController;
         controller.sortedNearByPeople = NULL;
+        return;
     }
     
     if([sender isKindOfClass:[UITableViewCell class]]) {

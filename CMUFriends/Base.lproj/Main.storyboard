@@ -146,12 +146,11 @@
                     </refreshControl>
                     <connections>
                         <outlet property="showInMap" destination="lCN-ej-aNN" id="Y9U-Nt-ZN0"/>
-                        <segue destination="Mao-KY-IEH" kind="push" identifier="fromUserListToProfile" id="nqz-cY-v3Y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfK-xa-0BX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-66" y="364"/>
+            <point key="canvasLocation" x="-122" y="-53"/>
         </scene>
         <!--Sign Up View Controller - Register-->
         <scene sceneID="hC2-pa-80i">
@@ -237,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b23-4t-Trr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-66" y="-376"/>
+            <point key="canvasLocation" x="-122" y="-840"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Pee-fi-P4O">
@@ -313,7 +312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8x-YG-Vv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-438" y="1258"/>
+            <point key="canvasLocation" x="938" y="1254"/>
         </scene>
         <!--Profile View Controller - Profile-->
         <scene sceneID="VWF-e1-4GK">
@@ -425,7 +424,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwH-ls-o1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1190" y="775"/>
+            <point key="canvasLocation" x="598" y="-53"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -434,8 +433,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hcb-sf-Br3"/>
-        <segue reference="nqz-cY-v3Y"/>
+        <segue reference="fhD-5k-6gZ"/>
         <segue reference="Twf-ib-Azz"/>
     </inferredMetricsTieBreakers>
 </document>
