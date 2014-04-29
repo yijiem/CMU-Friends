@@ -33,6 +33,14 @@
     [self.refreshControl endRefreshing];
 }
 
+// added by yu zhang.
+// press the line to go the profile file.
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // jump to the profile page of the user.
+    [self performSegueWithIdentifier:@"fromUserListToProfile" sender:self];
+}
+
 /* every time user load the home view or pull down the table list will call update() */
 - (void)update
 {
