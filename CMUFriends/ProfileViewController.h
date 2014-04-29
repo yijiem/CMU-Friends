@@ -10,5 +10,6 @@
 
 @interface ProfileViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *facebookID;
 
 @end

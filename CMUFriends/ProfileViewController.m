@@ -16,6 +16,7 @@
 @end
 
 @implementation ProfileViewController
+@synthesize facebookID;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,28 +28,34 @@
 }
 
 - (IBAction) sendFacebookMessage  {
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://inchoo.net"]];
+    
+    NSString *graphPath = [NSString stringWithFormat:@"/%@", facebookID.text];
     
     /* make the API call */
-    [FBRequestConnection startWithGraphPath:@"/me"
+    [FBRequestConnection startWithGraphPath:graphPath
                                  parameters:nil
                                  HTTPMethod:@"GET"
                           completionHandler:^(
                                               FBRequestConnection *connection,
-                                              id result,
+                                              id result6,
                                               NSError *error
                                               ) {
                               /* handle the result */
-                              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"fb-messenger://"]];
-
+                              
+                              NSLog(@"result : %@",result6);
+                              
+                              // get the facebook id of the person.
+                              NSString *id = [result6 objectForKey:@"id"];
+                              NSString *link = [NSString stringWithFormat:@"fb-messenger://user-thread/%@", id];
+                              
+                              // send message to the specific person.
+                              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
+                              
+                              NSDictionary *userInfo = [error userInfo];
+                              if (userInfo != NULL) {
+                                    NSLog(@"The error of facebook api is: %@", userInfo);
+                              }
                           }];
-    
-    
-    //NSString *userID = @"zhang.cmu";
-    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"fb-messenger://"]];
-
-    
-    //    fb-messenger://user-thread/{user-id}
 }
 
 - (void)viewDidLoad
