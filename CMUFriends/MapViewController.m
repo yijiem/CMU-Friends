@@ -229,6 +229,7 @@ bool firstLoad;
 // focus the area to my place.
 - (IBAction)zoomIn:(id)sender {
     // focus the area to myself.
+    coordinate = _mapView.userLocation.location.coordinate;
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (coordinate, 20000, 20000);
     [_mapView setRegion:region animated:NO];
 }
