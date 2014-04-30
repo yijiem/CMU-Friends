@@ -12,7 +12,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-
+// added by yu zhang, for provide the parse service.
+#import <Parse/Parse.h>
 
 @interface LocationViewController : UIViewController
 <CLLocationManagerDelegate>
@@ -25,11 +26,19 @@
 
 @implementation MapViewController
 
+// added by yu zhang. For display all the friends nearby.
+@synthesize sortedNearByPeople;
+
+// added by yu zhang, to display two friends.
+@synthesize userIndex;
+
 CLLocationCoordinate2D coordinate;
 
 // if it is the first time of get location, focus the area.
-bool firstLoad = YES;
+bool firstLoad;
 
+
+// change the display type to satellite and stand.
 - (IBAction)changeMapType:(id)sender {
     
     if (_mapView.mapType == MKMapTypeStandard)
@@ -43,6 +52,7 @@ bool firstLoad = YES;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        firstLoad = YES;
     }
     return self;
 }
@@ -55,8 +65,32 @@ bool firstLoad = YES;
         firstLoad = NO;
     }
 }
+
+// added by yu zhang begin.
+// when press the button of "show nearby friends", show all the friends nearby.
 - (IBAction)showNearByFriend:(id)sender {
+    // when userIndex = -1, it means that only show two person.
+    if (sortedNearByPeople == NULL) {
+        return;
+    }
+    
+    for (PFUser *user in sortedNearByPeople) {
+        
+        // Add an annotation2
+        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+        PFGeoPoint *location = [user objectForKey:@"location"];
+        
+        point.coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude);
+        point.title = [user objectForKey:@"name"];
+        point.subtitle = [user objectForKey:@"gender"];
+        
+        //point.pinColor = MKPinAnnotationColorPurple;
+        
+        [self.mapView addAnnotation:point];
+        
+    }
 }
+// added by yu zhang end.
 
 // Show the location of my friend and me.
 // Also focus the area to be my standing place.
@@ -134,6 +168,8 @@ bool firstLoad = YES;
     // send a log.
     NSLog(@"MapViewController says hello");
     
+    firstLoad = YES;
+    
     // set the mapView to show the location.
     [self.mapView setDelegate:self];
 }
@@ -147,6 +183,7 @@ bool firstLoad = YES;
         
         return aView;
     }
+    
     return nil;
 }
 

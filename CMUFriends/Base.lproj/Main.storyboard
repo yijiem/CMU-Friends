@@ -289,20 +289,20 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vOq-0V-aL3">
-                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vOq-0V-aL3">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vOq-0V-aL3" firstAttribute="leading" secondItem="zva-Tn-D3c" secondAttribute="leading" id="3hq-8I-Zyd"/>
-                            <constraint firstAttribute="trailing" secondItem="M5l-wo-eor" secondAttribute="trailing" constant="5" id="5cj-Pl-gMT"/>
-                            <constraint firstAttribute="trailing" secondItem="vOq-0V-aL3" secondAttribute="trailing" id="8d4-Qb-FhH"/>
-                            <constraint firstAttribute="bottom" secondItem="M5l-wo-eor" secondAttribute="bottom" id="SSX-v6-tUI"/>
-                            <constraint firstItem="M5l-wo-eor" firstAttribute="leading" secondItem="zva-Tn-D3c" secondAttribute="leading" constant="19" id="bmh-vp-5am"/>
-                            <constraint firstItem="M5l-wo-eor" firstAttribute="top" secondItem="vOq-0V-aL3" secondAttribute="bottom" id="lWx-fb-HEe"/>
-                            <constraint firstItem="vOq-0V-aL3" firstAttribute="top" secondItem="AyF-kp-fq9" secondAttribute="bottom" constant="44" id="qD2-EE-Zex"/>
+                            <constraint firstItem="vOq-0V-aL3" firstAttribute="top" secondItem="zva-Tn-D3c" secondAttribute="top" id="1A5-UB-8Ix"/>
+                            <constraint firstAttribute="trailing" secondItem="M5l-wo-eor" secondAttribute="trailing" constant="5" id="Yhp-aC-5DR"/>
+                            <constraint firstItem="vOq-0V-aL3" firstAttribute="leading" secondItem="zva-Tn-D3c" secondAttribute="leading" id="ZVt-VU-rMS"/>
+                            <constraint firstAttribute="trailing" secondItem="vOq-0V-aL3" secondAttribute="trailing" id="ZyJ-HA-ZoD"/>
+                            <constraint firstItem="M5l-wo-eor" firstAttribute="leading" secondItem="zva-Tn-D3c" secondAttribute="leading" constant="19" id="n6D-6n-AQO"/>
+                            <constraint firstItem="M5l-wo-eor" firstAttribute="top" secondItem="vOq-0V-aL3" secondAttribute="bottom" id="uKf-yu-Ex1"/>
+                            <constraint firstAttribute="bottom" secondItem="M5l-wo-eor" secondAttribute="bottom" id="yqm-ay-gnp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="P2h-eg-tv1"/>
@@ -312,7 +312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8x-YG-Vv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="1254"/>
+            <point key="canvasLocation" x="938" y="730"/>
         </scene>
         <!--Profile View Controller - Profile-->
         <scene sceneID="VWF-e1-4GK">
@@ -381,7 +381,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zTu-qO-x8n" kind="push" id="Qjp-dc-YcC"/>
+                                    <segue destination="zTu-qO-x8n" kind="push" identifier="profileToMapView" id="Qjp-dc-YcC"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="del-fj-SrV">
@@ -434,6 +434,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="fhD-5k-6gZ"/>
-        <segue reference="Twf-ib-Azz"/>
+        <segue reference="Qjp-dc-YcC"/>
     </inferredMetricsTieBreakers>
 </document>

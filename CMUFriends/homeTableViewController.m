@@ -44,10 +44,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // when press the button "Show in the map", perform this.
+    // when press the button "Show in the map", perform this to transfer the data to another
+    // view controller.
     if([segue.identifier isEqualToString:@"fromShowInMapToMap"]){
         MapViewController *controller = (MapViewController *)segue.destinationViewController;
-        controller.sortedNearByPeople = NULL;
+        controller.sortedNearByPeople = self.sortedNearByPeople;
+        controller.userIndex = -1;
         return;
     }
     
@@ -57,27 +59,11 @@
             if ([segue.identifier isEqualToString:@"select a cell"]) {
                 if ([segue.destinationViewController isKindOfClass:[ProfileViewController class]]) {
                     ProfileViewController *pvc = (ProfileViewController *) segue.destinationViewController;
-                    /* get user object on the selected row */
-                    PFUser *user = (PFUser *) [self.sortedNearByPeople objectAtIndex:indexPath.row];
                     
-                    /* set up profile image */
-                    PFFile *theImage = [user objectForKey:@"image"];
-                    NSData *imageData = [theImage getData];
-                    UIImage *image = [UIImage imageWithData:imageData];
-                    pvc.profileImage = image;
-                    
-                    /* set up name, gender, facebookid, email */
-                    pvc.profileName =
-                    [NSString stringWithFormat:@"%@", [user objectForKey:@"name"]];
-                    pvc.profileGender =
-                    [NSString stringWithFormat:@"%@", [user objectForKey:@"gender"]];
-                    pvc.facebookID =
-                    [NSString stringWithFormat:@"%@", [user objectForKey:@"facebookID"]];
-                    pvc.profileEmail =
-                    [NSString stringWithFormat:@"%@", [user objectForKey:@"email"]];
-                    pvc.profileDepartment =
-                    [NSString stringWithFormat:@"%@", [user objectForKey:@"department"]];
-                    
+                    // modified by yu zhang.
+                    // transfer a array and a index to next view.
+                    pvc.sortedNearByPeople = self.sortedNearByPeople;
+                    pvc.userIndex = indexPath.row;
                 }
             }
         }
@@ -89,6 +75,7 @@
 // added by yu zhang, when press the button of 
 - (IBAction)showPeopleInMap:(id)sender {
     
+    // display a 
     NSLog(@"GO TO THE MAP.");
 }
 

@@ -9,6 +9,12 @@
 #import "ProfileViewController.h"
 #import <FacebookSDK/FacebookSDK.h> // connect with faceboook.
 
+// added by yu zhang
+#import <Parse/Parse.h>
+
+// added by yu zhang. to show the route between two person.
+#import "MapViewController.h"
+
 @interface ProfileViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -21,7 +27,14 @@
 @end
 
 @implementation ProfileViewController
-@synthesize facebookID;
+//@synthesize facebookID;
+
+// added by yu zhang. For display all the friends nearby.
+@synthesize sortedNearByPeople;
+
+// added by yu zhang, to display two friends.
+@synthesize userIndex;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,10 +45,28 @@
     return self;
 }
 
+// added by yu zhang. To transfer data to the map view.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // when press the button "Show in the map", perform this to transfer the data to another
+    // view controller.
+    if([segue.identifier isEqualToString:@"profileToMapView"]){
+        MapViewController *controller = (MapViewController *)segue.destinationViewController;
+        controller.sortedNearByPeople = sortedNearByPeople;
+        controller.userIndex = userIndex;
+        return;
+    }
+}
+
+
 // send facebook message to the specific user.
 - (IBAction) sendFacebookMessage  {
     
-    NSString *graphPath = [NSString stringWithFormat:@"/%@", facebookID];
+    /* get user object on the selected row */
+    PFUser *user = (PFUser *) [self.sortedNearByPeople objectAtIndex:userIndex];
+
+    // modified by yu zhang. To get facebook ID.
+    NSString *graphPath = [NSString stringWithFormat:@"/%@", [user objectForKey:@"facebookID"]];
     
     /* make the API call */
     [FBRequestConnection startWithGraphPath:graphPath
@@ -43,15 +74,15 @@
                                  HTTPMethod:@"GET"
                           completionHandler:^(
                                               FBRequestConnection *connection,
-                                              id result6,
+                                              id resultFB,
                                               NSError *error
                                               ) {
                               /* handle the result */
                               
-                              NSLog(@"result : %@",result6);
+                              NSLog(@"result : %@",resultFB);
                               
                               // get the facebook id of the person.
-                              NSString *id = [result6 objectForKey:@"id"];
+                              NSString *id = [resultFB objectForKey:@"id"];
                               NSString *link = [NSString stringWithFormat:@"fb-messenger://user-thread/%@", id];
                               
                               // send message to the specific person.
@@ -64,14 +95,25 @@
                           }];
 }
 
+// modified by yu zhang. to transfer data through the array.
 - (void)updateView
 {
-    [self.imageView setImage:self.profileImage];
-    self.nameText.text = self.profileName;
-    self.genderText.text = self.profileGender;
-    self.facebookText.text = self.facebookID;
-    self.emailText.text = self.profileEmail;
-    self.departmentText.text = self.profileDepartment;
+    /* get user object on the selected row */
+    PFUser *user = (PFUser *) [self.sortedNearByPeople objectAtIndex:userIndex];
+    
+    /* set up profile image */
+    PFFile *theImage = [user objectForKey:@"image"];
+    NSData *imageData = [theImage getData];
+    UIImage *image = [UIImage imageWithData:imageData];
+    
+    [self.imageView setImage:image];
+    
+    /* set up name, gender, facebookid, email */
+    self.nameText.text = [user objectForKey:@"name"];
+    self.genderText.text = [user objectForKey:@"gender"];
+    self.facebookText.text = [user objectForKey:@"facebookID"];
+    self.emailText.text = [user objectForKey:@"email"];
+    self.departmentText.text = [user objectForKey:@"department"];
 }
 
 - (void)viewDidLoad

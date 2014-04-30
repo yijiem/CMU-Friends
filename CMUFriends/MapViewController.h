@@ -29,4 +29,7 @@
 // added by yu zhang. To import the sorted nearby people from the HometableView.
 @property (strong, atomic) NSMutableArray *sortedNearByPeople; // hold sortedNearByPeople list
 
+// added by yu zhang. To show the location of the specific person.
+@property NSInteger userIndex;
+
 @end
