@@ -14,32 +14,86 @@
 #import "MapViewController.h"
 
 @interface homeTableViewController ()
-
+@property (weak, nonatomic) IBOutlet UITableView *myTableView;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIImageView *shakeImageView;
 @end
 
 @implementation homeTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+/* Functions related to shaking including shaking sound effect, shaking animation, shaking motion handler */
+/* play shake sound when shaking */
+-(void) playSound {
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"shake" ofType:@"mp3"];
+    SystemSoundID soundID;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath: soundPath], &soundID);
+    AudioServicesPlaySystemSound (soundID);
+    // [soundPath release];
+    // NSLog(@"soundpath retain count: %lu", (unsigned long)[soundPath retainCount]);
 }
 
-- (IBAction)refresh:(id)sender
+
+/* let this view become the first responder of motion */
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self becomeFirstResponder];
+}
+
+
+/* Handling shaking motion */
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (motion == UIEventSubtypeMotionShake)
+    {
+        // User was shaking the device. Post a notification named "shake."
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"shake" object:self];
+        [self playSound];
+        [self startShake:self.shakeImageView];
+        [self refresh]; // update near by friends' data
+    }
+}
+
+/* shake animation */
+- (void)startShake:(UIView *)view
+{
+    CGAffineTransform leftShake = CGAffineTransformMakeTranslation(-5, 0);
+    CGAffineTransform rightShake = CGAffineTransformMakeTranslation(5, 0);
+    
+    view.transform = leftShake;  // starting point
+    
+    [UIView beginAnimations:@"shake_image" context:(__bridge void *)(view)];
+    [UIView setAnimationRepeatAutoreverses:YES]; // important
+    [UIView setAnimationRepeatCount:5];
+    [UIView setAnimationDuration:0.08];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(shakeEnded:finished:context:)];
+    
+    view.transform = rightShake; // end here & auto-reverse
+    
+    [UIView commitAnimations];
+}
+
+- (void)shakeEnded:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
+{
+    if ([finished boolValue]) {
+        UIView* item = (__bridge UIView *)context;
+        item.transform = CGAffineTransformIdentity;
+    }
+}
+
+
+/* refresh icon at the top of the table view */
+- (IBAction)refresh
 {
     [self.refreshControl beginRefreshing];
 # warning block the main thread
     [self update];
-    [self.tableView reloadData];
+    [self.myTableView reloadData];
     [self.refreshControl endRefreshing];
 }
-
-
-// added by yu zhang.
-
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -52,7 +106,7 @@
     }
     
     if([sender isKindOfClass:[UITableViewCell class]]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        NSIndexPath *indexPath = [self.myTableView indexPathForCell:sender];
         if (indexPath) {
             if ([segue.identifier isEqualToString:@"select a cell"]) {
                 if ([segue.destinationViewController isKindOfClass:[ProfileViewController class]]) {
@@ -83,8 +137,6 @@
         }
     }
 }
-
-
 
 // added by yu zhang, when press the button of 
 - (IBAction)showPeopleInMap:(id)sender {
@@ -132,9 +184,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.refreshControl beginRefreshing];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    [self.myTableView addSubview:self.refreshControl];
     [self update];
-    [self.refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,6 +195,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 #pragma mark - Table view data source
 
