@@ -35,8 +35,12 @@
 // added by yu zhang, to display two friends.
 @synthesize userIndex;
 
+// store the facebook ID.
+NSString *facebookID;
+
 - (IBAction)openFacebookLink:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.daledietrich.com"]];
+    // open a facebook link.
+    [self callFacebookApi: 1];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -61,15 +65,9 @@
     }
 }
 
-
-// send facebook message to the specific user.
-- (IBAction) sendFacebookMessage  {
-    
-    /* get user object on the selected row */
-    PFUser *user = (PFUser *) [self.sortedNearByPeople objectAtIndex:userIndex];
-
+- (void)callFacebookApi: (NSInteger)serviceType {
     // modified by yu zhang. To get facebook ID.
-    NSString *graphPath = [NSString stringWithFormat:@"/%@", [user objectForKey:@"facebookID"]];
+    NSString *graphPath = [NSString stringWithFormat:@"/%@", facebookID];
     
     /* make the API call */
     [FBRequestConnection startWithGraphPath:graphPath
@@ -86,16 +84,30 @@
                               
                               // get the facebook id of the person.
                               NSString *id = [resultFB objectForKey:@"id"];
-                              NSString *link = [NSString stringWithFormat:@"fb-messenger://user-thread/%@", id];
+                              
+                              NSString *link = NULL;
+                              // facebook messgage.
+                              if (serviceType == 0) {
+                                    link = [NSString stringWithFormat:@"fb-messenger://user-thread/%@", id];
+                              } else {
+                                    link = [NSString stringWithFormat:@"http://www.facebook.com/%@", id];
+                              }
                               
                               // send message to the specific person.
                               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
                               
                               NSDictionary *userInfo = [error userInfo];
                               if (userInfo != NULL) {
-                                    NSLog(@"The error of facebook api is: %@", userInfo);
+                                  NSLog(@"The error of facebook api is: %@", userInfo);
                               }
                           }];
+
+}
+
+
+// send facebook message to the specific user.
+- (IBAction) sendFacebookMessage {
+    [self callFacebookApi: 0];
 }
 
 // modified by yu zhang. to transfer data through the array.
@@ -103,6 +115,8 @@
 {
     /* get user object on the selected row */
     PFUser *user = (PFUser *) [self.sortedNearByPeople objectAtIndex:userIndex];
+    
+    facebookID = [user objectForKey:@"facebookID"];
     
     /* set up profile image */
     PFFile *theImage = [user objectForKey:@"image"];
