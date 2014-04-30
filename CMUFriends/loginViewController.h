@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface loginViewController : UIViewController <UITextFieldDelegate>
+@interface loginViewController : UIViewController
+<UITextFieldDelegate>
 
 @end

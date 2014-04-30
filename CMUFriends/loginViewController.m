@@ -11,8 +11,8 @@
 #import "NearByPeople.h"
 
 @interface loginViewController ()
-@property (nonatomic, readonly, retain) IBOutlet UITextField *andrewIdTextField;
-@property (nonatomic, readonly, retain) IBOutlet UITextField *password;
+@property (nonatomic, retain) IBOutlet UITextField *andrewIdTextField;
+@property (nonatomic, retain) IBOutlet UITextField *password;
 @end
 
 @implementation loginViewController
@@ -42,11 +42,13 @@
                                     block:^(PFUser *user, NSError *error) {
                                     if (user) {
                                     // Do stuff after successful login.
+                                        [user setObject:@YES forKey:@"availability"];
+                                        [user save];
                                         [self performSegueWithIdentifier:@"Login Success" sender:sender];
                                     } else {
                                     // The login failed. Check error to see why.
                                         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                                                          message:[error localizedDescription]
+                                                                                          message:@"User name or password failure..."
                                                                                          delegate:nil
                                                                                 cancelButtonTitle:@"OK"
                                                                                 otherButtonTitles:nil];
@@ -63,7 +65,7 @@
     if ([segue.identifier isEqualToString:@"Login Success"]) {
         if ([segue.destinationViewController isKindOfClass:[homeTableViewController class]]) {
             // do what you want to the next view
-            homeTableViewController *htvc = (homeTableViewController *)segue.destinationViewController;
+            //homeTableViewController *htvc = (homeTableViewController *)segue.destinationViewController;
         }
     }
 }

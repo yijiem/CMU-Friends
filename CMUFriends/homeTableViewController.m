@@ -89,7 +89,6 @@
 - (IBAction)refresh
 {
     [self.refreshControl beginRefreshing];
-# warning block the main thread
     [self update];
     [self.myTableView reloadData];
     [self.refreshControl endRefreshing];
@@ -131,7 +130,7 @@
     NSLog(@"GO TO THE MAP.");
 }
 
-/* every time user load the home view or pull down the table list will call update() */
+/* every time user load the home view or pull down the table list or shake will call (void)update*/
 - (void)update
 {
     /* report current user's location to back-end when user login in */
@@ -146,6 +145,7 @@
     /* query User object from back-end except the current user */
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query whereKey:@"username" notEqualTo:[PFUser currentUser].username];
+    [query whereKey:@"availability" equalTo:@YES];
     NSArray *objects = [query findObjects];
     
             // The find succeeded.
@@ -183,6 +183,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+/* user touch logout button */
+- (IBAction)logoutButtonTouch:(UIBarButtonItem *)sender {
+    [[PFUser currentUser] setObject:@NO forKey:@"availability"];
+    [[PFUser currentUser] save];
+    
+    [PFUser logOut];
+    PFUser *currentUser = [PFUser currentUser]; // this will now be nil
+    
+    if (currentUser != nil) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                          message:@"Cannot logout due to unknown reasion..."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+    }
+    
+    //[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"popBack" object:nil]];
+    [self.navigationController popToRootViewControllerAnimated:NO];
+}
 
 
 #pragma mark - Table view data source
