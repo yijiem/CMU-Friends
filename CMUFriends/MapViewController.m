@@ -82,15 +82,22 @@ bool firstLoad;
     }
     
     for (PFUser *user in sortedNearByPeople) {
-        [self addAnnotation:user];
+        [self addAnnotationFriend:user];
     }
 }
 
 // added by yu zhang. To add a user into the map.
--(CLLocationCoordinate2D)addAnnotation: (PFUser*)user {
+-(CLLocationCoordinate2D)addAnnotationFriend: (PFUser*)user {
     // Add an annotation2
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     PFGeoPoint *location = [user objectForKey:@"location"];
+    
+    if (location == NULL) {
+        //return 0;
+        NSLog(@"The location is null!");
+        // don't know how to deal with this. give a 0,0 position back.
+        return CLLocationCoordinate2DMake(0,0);
+    }
     
     CLLocationCoordinate2D userCoordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude);
     point.coordinate = userCoordinate;
@@ -121,7 +128,7 @@ bool firstLoad;
     PFUser *user = (PFUser *) [self.sortedNearByPeople objectAtIndex:userIndex];
     
     // Add an annotation2 and get the location.
-    CLLocationCoordinate2D friendCoordinate = [self addAnnotation:user];
+    CLLocationCoordinate2D friendCoordinate = [self addAnnotationFriend:user];
     
     MKPlacemark *source = [[MKPlacemark alloc]initWithCoordinate:coordinate addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil] ];
     
