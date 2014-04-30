@@ -294,11 +294,6 @@
 				CLASSPREFIX = login;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = cmu.08723.topcoder;
-				TargetAttributes = {
-					61051A0F19077B850023AE22 = {
-						TestTargetID = 610519EE19077B850023AE22;
-					};
-				};
 			};
 			buildConfigurationList = 610519EA19077B850023AE22 /* Build configuration list for PBXProject "CMUFriends" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -479,7 +474,7 @@
 		61051A2219077B850023AE22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-cmudog";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -497,7 +492,7 @@
 		61051A2319077B850023AE22 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-cmudog";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -515,7 +510,6 @@
 		61051A2519077B850023AE22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CMUFriends.app/CMUFriends";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -529,7 +523,6 @@
 				);
 				INFOPLIST_FILE = "CMUFriendsTests/CMUFriendsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -537,7 +530,6 @@
 		61051A2619077B850023AE22 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CMUFriends.app/CMUFriends";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -547,7 +539,6 @@
 				GCC_PREFIX_HEADER = "CMUFriends/CMUFriends-Prefix.pch";
 				INFOPLIST_FILE = "CMUFriendsTests/CMUFriendsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

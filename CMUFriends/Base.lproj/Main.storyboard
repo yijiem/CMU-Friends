@@ -20,7 +20,7 @@
                                 <rect key="frame" x="120" y="291" width="69" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign in">
-                                    <color key="titleColor" red="1" green="0.098076480990000006" blue="0.1329011131" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -55,15 +55,14 @@
                                 <rect key="frame" x="234" y="518" width="66" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up">
-                                    <color key="titleColor" red="1" green="0.098076480990000006" blue="0.1329011131" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="f1e-aS-QUx" kind="push" identifier="SignUp Segue" id="a87-9f-vgh"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="all_people.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="aMu-7Y-za1">
-                                <rect key="frame" x="99" y="75" width="123" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cmu_dog" translatesAutoresizingMaskIntoConstraints="NO" id="bx8-Ks-TwI">
+                                <rect key="frame" x="96" y="78" width="129" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -130,7 +129,7 @@
                                     <outlet property="delegate" destination="e0h-Vs-6dC" id="nrb-pi-gXe"/>
                                 </connections>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="shake_image" image="unnamed" translatesAutoresizingMaskIntoConstraints="NO" id="Mgl-Tg-LRb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="shake_image" image="shake_1" translatesAutoresizingMaskIntoConstraints="NO" id="Mgl-Tg-LRb">
                                 <rect key="frame" x="97" y="422" width="127" height="127"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -448,8 +447,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="all_people.jpg" width="190" height="190"/>
-        <image name="unnamed" width="300" height="300"/>
+        <image name="cmu_dog" width="702" height="702"/>
+        <image name="shake_1" width="300" height="300"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -457,7 +456,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Qjp-dc-YcC"/>
         <segue reference="Qut-6B-ypE"/>
+        <segue reference="ZVm-b2-Uow"/>
     </inferredMetricsTieBreakers>
 </document>
