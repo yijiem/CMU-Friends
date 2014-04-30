@@ -273,11 +273,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Kmo-x6-iL4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zva-Tn-D3c">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M5l-wo-eor">
-                                <rect key="frame" x="19" y="524" width="296" height="44"/>
+                                <rect key="frame" x="19" y="460" width="296" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem tag="-1" systemItem="refresh" id="amS-Eh-8i9">
@@ -298,7 +298,7 @@
                                 </items>
                             </toolbar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vOq-0V-aL3">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
                         </subviews>
@@ -316,6 +316,7 @@
                     <navigationItem key="navigationItem" title="Map" id="P2h-eg-tv1"/>
                     <connections>
                         <outlet property="mapView" destination="vOq-0V-aL3" id="OEI-a5-Acb"/>
+                        <outlet property="searchNearby" destination="ewl-9r-mAH" id="eOL-Fu-tuy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8x-YG-Vv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -444,7 +445,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-
         <segue reference="8w7-L7-eTs"/>
         <segue reference="ZVm-b2-Uow"/>
     </inferredMetricsTieBreakers>

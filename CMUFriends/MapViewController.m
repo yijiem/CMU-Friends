@@ -32,6 +32,9 @@
 // added by yu zhang, to display two friends.
 @synthesize userIndex;
 
+@synthesize searchNearby;
+@synthesize zoomIn;
+
 CLLocationCoordinate2D coordinate;
 
 // if it is the first time of get location, focus the area.
@@ -60,9 +63,13 @@ bool firstLoad;
 // set the range and display the location.
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    if (firstLoad == YES) {
-        [self showLocationOfFriendAndMe];
+    if (firstLoad == YES) {        
         firstLoad = NO;
+        if (userIndex == -1) {
+            [self zoomIn:zoomIn];
+        } else {
+            [self showLocationOfFriendAndMe];
+        }
     }
 }
 
@@ -75,37 +82,53 @@ bool firstLoad;
     }
     
     for (PFUser *user in sortedNearByPeople) {
-        
-        // Add an annotation2
-        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-        PFGeoPoint *location = [user objectForKey:@"location"];
-        
-        point.coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude);
-        point.title = [user objectForKey:@"name"];
-        point.subtitle = [user objectForKey:@"gender"];
-        
-        //point.pinColor = MKPinAnnotationColorPurple;
-        
-        [self.mapView addAnnotation:point];
-        
+        [self addAnnotation:user];
     }
 }
+
+// added by yu zhang. To add a user into the map.
+-(CLLocationCoordinate2D)addAnnotation: (PFUser*)user {
+    // Add an annotation2
+    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+    PFGeoPoint *location = [user objectForKey:@"location"];
+    
+    CLLocationCoordinate2D userCoordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude);
+    point.coordinate = userCoordinate;
+    point.title = [user objectForKey:@"name"];
+    point.subtitle = [user objectForKey:@"gender"];
+    
+    //point.pinColor = MKPinAnnotationColorPurple;
+    
+    [self.mapView addAnnotation:point];
+    
+    return userCoordinate;
+}
+
 // added by yu zhang end.
 
 // Show the location of my friend and me.
-// Also focus the area to be my standing place.
+// Also focus the area to be my standing place. If route not found, foucus to the friend's location.
 - (void)showLocationOfFriendAndMe
 {
+    // do not need to show if their is no index of friend.
+    if (userIndex == -1) {
+        return;
+    }
+    
     coordinate = _mapView.userLocation.location.coordinate;
     
-    CLLocationCoordinate2D coordinate2 = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude + 0.05);
+    /* get user object on the selected row, then add a annotation to it. */
+    PFUser *user = (PFUser *) [self.sortedNearByPeople objectAtIndex:userIndex];
+    
+    // Add an annotation2 and get the location.
+    CLLocationCoordinate2D friendCoordinate = [self addAnnotation:user];
     
     MKPlacemark *source = [[MKPlacemark alloc]initWithCoordinate:coordinate addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil] ];
     
     MKMapItem *srcMapItem = [[MKMapItem alloc]initWithPlacemark:source];
     [srcMapItem setName:@""];
     
-    MKPlacemark *destination = [[MKPlacemark alloc]initWithCoordinate:coordinate2 addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil] ];
+    MKPlacemark *destination = [[MKPlacemark alloc]initWithCoordinate:friendCoordinate addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil] ];
     
     MKMapItem *distMapItem = [[MKMapItem alloc]initWithPlacemark:destination];
     [distMapItem setName:@""];
@@ -117,18 +140,25 @@ bool firstLoad;
     
     MKDirections *direction = [[MKDirections alloc]initWithRequest:request];
     
-    // Add an annotation2
-    MKPointAnnotation *point2 = [[MKPointAnnotation alloc] init];
-    point2.coordinate = coordinate2;
-    point2.title = @"Bin Feng";
-    point2.subtitle = @"The location of the friend.";
-    
-    [self.mapView addAnnotation:point2];
-    
+    __block CLLocationDistance totalDistance = 0;
     
     [direction calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
-        
         NSLog(@"response = %@",response);
+        
+        if (response == NULL) {
+            // focus the area to friend.
+            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (friendCoordinate, 0, 0);
+            [_mapView setRegion:region animated:NO];
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"No route found"
+                                  message: @"Failed to find the route."\
+                                  delegate: nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+        
+        
         NSArray *arrRoutes = [response routes];
         [arrRoutes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
@@ -139,22 +169,26 @@ bool firstLoad;
             NSLog(@"Rout Name : %@",rout.name);
             NSLog(@"Total Distance (in Meters) :%f",rout.distance);
             
+            totalDistance = rout.distance;
+            
             NSArray *steps = [rout steps];
             
             //NSLog(@"Total Steps : %d",[steps count]);
-            
             [steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 NSLog(@"Rout Instruction : %@",[obj instructions]);
+                // The route distance in meters. (read-only)
                 NSLog(@"Rout Distance : %f",[obj distance]);
             }];
+            
+            // focus the area to myself.
+            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (coordinate, totalDistance*2.2, totalDistance*2.2);
+            [_mapView setRegion:region animated:NO];
+            
+
         }];
     }];
     
-    // focus the area to myself.
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (coordinate, 20000, 20000);
-    [_mapView setRegion:region animated:NO];
-    
-}
+    }
 
 - (void)viewDidLoad
 {
@@ -169,6 +203,11 @@ bool firstLoad;
     NSLog(@"MapViewController says hello");
     
     firstLoad = YES;
+    
+    if (userIndex == -1) {
+        // when initialize, just call this function to show all the friends.
+        [self showNearByFriend:searchNearby];
+    }
     
     // set the mapView to show the location.
     [self.mapView setDelegate:self];

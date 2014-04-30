@@ -21,6 +21,7 @@
 
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)changeMapType:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *searchNearby;
 
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *zoomIn;
