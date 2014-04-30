@@ -375,6 +375,9 @@
                                 <state key="normal" title="Visit Facebook">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="openFacebookLink:" destination="Mao-KY-IEH" eventType="touchUpInside" id="KvP-zK-D70"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVC-6G-4Ni">
                                 <rect key="frame" x="75" y="387" width="170" height="30"/>
@@ -449,6 +452,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="8w7-L7-eTs"/>
-        <segue reference="ZVm-b2-Uow"/>
+        <segue reference="Qjp-dc-YcC"/>
     </inferredMetricsTieBreakers>
 </document>

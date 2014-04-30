@@ -221,11 +221,16 @@
     
     NSNumber *distance = [NSNumber numberWithDouble:[[self.distance objectAtIndex:indexPath.row] doubleValue]];
     
+    // modified by yu zhang to display meters.
     if ([[self.distance objectAtIndex:indexPath.row] compare:oneMile] == NSOrderedAscending) {
-        cell.detailTextLabel.text = @"less than one mile...";
+        //cell.detailTextLabel.text = @"less than one mile...";
+        double distanceMeter = [distance doubleValue]*1600;
+        cell.detailTextLabel.text =
+            [NSString stringWithFormat:@"%.1f meters", distanceMeter];
+
     } else {
         cell.detailTextLabel.text =
-            [NSString stringWithFormat:@"%.1f miles...", [distance doubleValue]];
+            [NSString stringWithFormat:@"%.1f miles", [distance doubleValue]];
     }
     
     return cell;

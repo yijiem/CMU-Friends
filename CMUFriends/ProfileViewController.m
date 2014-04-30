@@ -35,6 +35,9 @@
 // added by yu zhang, to display two friends.
 @synthesize userIndex;
 
+- (IBAction)openFacebookLink:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.daledietrich.com"]];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
