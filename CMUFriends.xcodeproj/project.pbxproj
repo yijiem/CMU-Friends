@@ -29,6 +29,7 @@
 		61051A1C19077B850023AE22 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 61051A1A19077B850023AE22 /* InfoPlist.strings */; };
 		61051A1E19077B850023AE22 /* CMUFriendsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61051A1D19077B850023AE22 /* CMUFriendsTests.m */; };
 		61CF6B2E190DED09009CA42E /* signUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61CF6B2D190DED09009CA42E /* signUpViewController.m */; };
+		61E28C38191085CC002B814C /* shake.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 61E28C37191085CC002B814C /* shake.mp3 */; };
 		61F25F59190EC6BB00EFB8D7 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F25F58190EC6BB00EFB8D7 /* Parse.framework */; };
 		61F25F5F190F015300EFB8D7 /* NearByPeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F25F5E190F015300EFB8D7 /* NearByPeople.m */; };
 		61F25F63190F169600EFB8D7 /* homeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F25F62190F169600EFB8D7 /* homeTableViewController.m */; };
@@ -84,6 +85,8 @@
 		61051A1D19077B850023AE22 /* CMUFriendsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMUFriendsTests.m; sourceTree = "<group>"; };
 		61CF6B2C190DED09009CA42E /* signUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signUpViewController.h; sourceTree = "<group>"; };
 		61CF6B2D190DED09009CA42E /* signUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = signUpViewController.m; sourceTree = "<group>"; };
+		61E28C30191076A7002B814C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		61E28C37191085CC002B814C /* shake.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shake.mp3; sourceTree = "<group>"; };
 		61F25F58190EC6BB00EFB8D7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		61F25F5D190F015300EFB8D7 /* NearByPeople.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NearByPeople.h; path = model/NearByPeople.h; sourceTree = "<group>"; };
 		61F25F5E190F015300EFB8D7 /* NearByPeople.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearByPeople.m; path = model/NearByPeople.m; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 		610519E619077B850023AE22 = {
 			isa = PBXGroup;
 			children = (
+				61E28C37191085CC002B814C /* shake.mp3 */,
 				610519F819077B850023AE22 /* CMUFriends */,
 				61051A1719077B850023AE22 /* CMUFriendsTests */,
 				610519F119077B850023AE22 /* Frameworks */,
@@ -158,6 +162,7 @@
 		610519F119077B850023AE22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61E28C30191076A7002B814C /* CoreMotion.framework */,
 				2AD587B6190F710500F20866 /* FacebookSDK.framework */,
 				61F25F58190EC6BB00EFB8D7 /* Parse.framework */,
 				2ACA1BDD190DE68200F0ADD2 /* MapKit.framework */,
@@ -322,6 +327,7 @@
 				61051A0B19077B850023AE22 /* Images.xcassets in Resources */,
 				2A0A08BB190FCA7A00A0BE72 /* my position.jpg in Resources */,
 				2A0A08BA190FCA7A00A0BE72 /* all_people.jpg in Resources */,
+				61E28C38191085CC002B814C /* shake.mp3 in Resources */,
 				610519FD19077B850023AE22 /* InfoPlist.strings in Resources */,
 				2AD587AF190F57F000F20866 /* people.png in Resources */,
 				61051A0619077B850023AE22 /* Main.storyboard in Resources */,

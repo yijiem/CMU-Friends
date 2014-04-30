@@ -26,7 +26,7 @@
 	<string>1407451212866519</string>
 	<key>FacebookDisplayName</key>
 	<string>CMUFriends</string>
-	<key>LSRequiresIPhoneOS</key>
+	<key>accelerometer</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>

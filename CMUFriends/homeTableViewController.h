@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <AudioToolbox/AudioToolbox.h>
 
-@interface homeTableViewController : UITableViewController
-                                     <UITableViewDelegate, UITableViewDataSource>
+                                     /* modified by Yijie Ma */
+@interface homeTableViewController : UIViewController
+<UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *showInMap;
 
 @property (strong, atomic) NSMutableArray *sortedNearByPeople; // hold sortedNearByPeople list
 @property (strong, atomic) NSMutableArray *distance; // hold distance
+
+
 @end
