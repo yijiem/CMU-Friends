@@ -3,11 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "cmu_dog.png"
+      "filename" : "cmu_dog80pt.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "cmu_dog120pt.png"
     }
   ],
   "info" : {

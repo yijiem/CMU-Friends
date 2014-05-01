@@ -40,7 +40,7 @@
     self.genderTextField.delegate = self;
     self.departmentTextField.delegate = self;
     
-    self.genderArray = @[@"male", @"female"];
+    self.genderArray = @[@"male", @"female", @"undisclose"];
     self.departmentArray = @[@"Electrical and Computer Engineering", @"Information Network Institute", @"Computer Science", @"Carnegie Institute of Technology", @"Tepper", @"Heinz", @"College of Fine Art"];
     /* hide the gender view */
     self.genderView.frame = CGRectMake(34, 600, 252, 149);
@@ -171,7 +171,10 @@
     // other fields can be set just like with PFObject
     user[@"facebookID"] = self.facebookIdTextField.text;
     user[@"name"] = self.nameTextField.text;
-    user[@"gender"] = self.genderTextField.text;
+    // do not upload gender information if user select "undisclose"
+    if (![self.genderTextField.text isEqual:@"undisclose"]){
+        user[@"gender"] = self.genderTextField.text;
+    }
     user[@"department"] = self.departmentTextField.text;
     user[@"availability"] = @YES;
     

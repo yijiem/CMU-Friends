@@ -3,19 +3,19 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "cmu_dog_iphone5_appicon_small.png",
+      "filename" : "cmu_dog58pt-1.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "cmu_dog_iphone5_appicon.png",
+      "filename" : "cmu_dog80pt.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "cmu_dogBig.png",
+      "filename" : "cmu_dog120pt.png",
       "scale" : "2x"
     }
   ],
