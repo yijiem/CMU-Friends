@@ -26,11 +26,15 @@
 @property (strong, nonatomic) NSArray *departmentArray;
 
 @property (strong, nonatomic) PFUser *user;
+// user for indicate whether a user has registered success but not verify email
+// or registered failure
+@property (nonatomic) BOOL registerFlag;
 @end
 
 
 @implementation signUpViewController
 @synthesize user;
+@synthesize registerFlag;
 
 - (void)viewDidLoad
 {
@@ -51,6 +55,8 @@
     self.genderView.frame = CGRectMake(34, 600, 252, 149);
     /* hide the department view */
     self.departmentView.frame = CGRectMake(34, 600, 252, 149);
+    
+    registerFlag = false; // set initial register flag to false
 }
 
 
@@ -169,20 +175,22 @@
 - (IBAction)registerButtonTouch:(id)sender
 {
     // not the first time touch register button to enter into this
-    if (user != nil) {
-        [user refresh];
-        if (![[user objectForKey:@"emailVerified"] boolValue]) {
-            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"An email has been send to you, please verify your email to continue......"
-                                                              message:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles:nil];
-            [message show];
-            return;
-        } else {
-            // perform segue to home view
-            [self performSegueWithIdentifier:@"Register Success" sender:sender];
-            return;
+    if (registerFlag == true) {
+        if (user != nil) {
+            [user refresh];
+            if (![[user objectForKey:@"emailVerified"] boolValue]) {
+                UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"An email has been send to you, please verify your email to continue......"
+                                                                  message:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"OK"
+                                                        otherButtonTitles:nil];
+                [message show];
+                return;
+            } else {
+                // perform segue to home view
+                [self performSegueWithIdentifier:@"Register Success" sender:sender];
+                return;
+            }
         }
     }
     
@@ -216,6 +224,7 @@
                 // perform segue to home view
                 [self performSegueWithIdentifier:@"Register Success" sender:sender];
             }
+            registerFlag = true;
         } else {
             NSString *errorString = [error userInfo][@"error"];
             // Show the errorString somewhere and let the user try again.
@@ -227,6 +236,7 @@
             [message show];
             self.andrewIdTextField.text = @"";
             self.emailTextField.text = @"";
+            registerFlag = false;
         }
     }];
 }
