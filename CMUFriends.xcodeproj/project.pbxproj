@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2A0A08BA190FCA7A00A0BE72 /* all_people.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A0A08B8190FCA7A00A0BE72 /* all_people.jpg */; };
 		2A0A08BB190FCA7A00A0BE72 /* my position.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A0A08B9190FCA7A00A0BE72 /* my position.jpg */; };
+		2A9095031911E561007536BE /* ZSAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9095001911E561007536BE /* ZSAnnotation.m */; };
+		2A9095041911E561007536BE /* ZSPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9095021911E561007536BE /* ZSPinAnnotation.m */; };
 		2ACA1BDE190DE68200F0ADD2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACA1BDD190DE68200F0ADD2 /* MapKit.framework */; };
 		2AD587AF190F57F000F20866 /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD587AE190F57F000F20866 /* people.png */; };
 		2AD587B2190F580B00F20866 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD587B1190F580B00F20866 /* MapViewController.m */; };
@@ -57,6 +59,10 @@
 /* Begin PBXFileReference section */
 		2A0A08B8190FCA7A00A0BE72 /* all_people.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = all_people.jpg; sourceTree = "<group>"; };
 		2A0A08B9190FCA7A00A0BE72 /* my position.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "my position.jpg"; sourceTree = "<group>"; };
+		2A9094FF1911E561007536BE /* ZSAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAnnotation.h; sourceTree = "<group>"; };
+		2A9095001911E561007536BE /* ZSAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAnnotation.m; sourceTree = "<group>"; };
+		2A9095011911E561007536BE /* ZSPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSPinAnnotation.h; sourceTree = "<group>"; };
+		2A9095021911E561007536BE /* ZSPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSPinAnnotation.m; sourceTree = "<group>"; };
 		2ACA1BDD190DE68200F0ADD2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2AD587AE190F57F000F20866 /* people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people.png; sourceTree = "<group>"; };
 		2AD587B0190F580B00F20866 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -139,6 +145,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A9095051911E56A007536BE /* ZSAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				2A9094FF1911E561007536BE /* ZSAnnotation.h */,
+				2A9095001911E561007536BE /* ZSAnnotation.m */,
+				2A9095011911E561007536BE /* ZSPinAnnotation.h */,
+				2A9095021911E561007536BE /* ZSPinAnnotation.m */,
+			);
+			name = ZSAnnotation;
+			sourceTree = "<group>";
+		};
 		610519E619077B850023AE22 = {
 			isa = PBXGroup;
 			children = (
@@ -196,12 +213,13 @@
 				61051A0719077B850023AE22 /* loginViewController.h */,
 				61051A0819077B850023AE22 /* loginViewController.m */,
 				61051A0A19077B850023AE22 /* Images.xcassets */,
-				610519F919077B850023AE22 /* Supporting Files */,
 				61CF6B2C190DED09009CA42E /* signUpViewController.h */,
 				61CF6B2D190DED09009CA42E /* signUpViewController.m */,
-				61F25F60190F016900EFB8D7 /* model */,
 				61F25F61190F169600EFB8D7 /* homeTableViewController.h */,
 				61F25F62190F169600EFB8D7 /* homeTableViewController.m */,
+				61F25F60190F016900EFB8D7 /* model */,
+				2A9095051911E56A007536BE /* ZSAnnotation */,
+				610519F919077B850023AE22 /* Supporting Files */,
 			);
 			path = CMUFriends;
 			sourceTree = "<group>";
@@ -351,7 +369,9 @@
 				61F25F63190F169600EFB8D7 /* homeTableViewController.m in Sources */,
 				610519FF19077B850023AE22 /* main.m in Sources */,
 				61F25F5F190F015300EFB8D7 /* NearByPeople.m in Sources */,
+				2A9095031911E561007536BE /* ZSAnnotation.m in Sources */,
 				2AD587B2190F580B00F20866 /* MapViewController.m in Sources */,
+				2A9095041911E561007536BE /* ZSPinAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
