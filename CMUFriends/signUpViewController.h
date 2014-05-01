@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface signUpViewController : UIViewController <UITextFieldDelegate>
+@interface signUpViewController : UIViewController
+<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @end

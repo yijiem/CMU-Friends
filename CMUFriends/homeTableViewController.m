@@ -138,7 +138,7 @@
         if (!error) {
             // do something with the new geoPoint
             [[PFUser currentUser] setObject:geoPoint forKey:@"location"];
-            [[PFUser currentUser] saveInBackground];
+            [[PFUser currentUser] save];
         }
     }];
     
