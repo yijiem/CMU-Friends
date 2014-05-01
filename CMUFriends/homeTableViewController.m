@@ -50,8 +50,8 @@
     {
         // User was shaking the device. Post a notification named "shake."
         [[NSNotificationCenter defaultCenter] postNotificationName:@"shake" object:self];
-        [self playSound];
         [self startShake:self.shakeImageView];
+        [self playSound];
         [self refresh]; // update near by friends' data
     }
 }
@@ -138,7 +138,7 @@
         if (!error) {
             // do something with the new geoPoint
             [[PFUser currentUser] setObject:geoPoint forKey:@"location"];
-            [[PFUser currentUser] saveInBackground];
+            [[PFUser currentUser] save];
         }
     }];
     
