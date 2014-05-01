@@ -24,9 +24,13 @@
 
 @property (strong, nonatomic) NSArray *genderArray;
 @property (strong, nonatomic) NSArray *departmentArray;
+
+@property (strong, nonatomic) PFUser *user;
 @end
 
+
 @implementation signUpViewController
+@synthesize user;
 
 - (void)viewDidLoad
 {
@@ -42,6 +46,7 @@
     
     self.genderArray = @[@"male", @"female", @"undisclose"];
     self.departmentArray = @[@"Electrical and Computer Engineering", @"Information Network Institute", @"Computer Science", @"Carnegie Institute of Technology", @"Tepper", @"Heinz", @"College of Fine Art"];
+    
     /* hide the gender view */
     self.genderView.frame = CGRectMake(34, 600, 252, 149);
     /* hide the department view */
@@ -163,10 +168,28 @@
 
 - (IBAction)registerButtonTouch:(id)sender
 {
-    PFUser *user = [PFUser user];
+    // not the first time touch register button to enter into this
+    if (user != nil) {
+        [user refresh];
+        if (![[user objectForKey:@"emailVerified"] boolValue]) {
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"An email has been send to you, please verify your email to continue......"
+                                                              message:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+            return;
+        } else {
+            // perform segue to home view
+            [self performSegueWithIdentifier:@"Register Success" sender:sender];
+            return;
+        }
+    }
+    
+    user = [PFUser user];
     user.username = self.andrewIdTextField.text;
     user.password = self.passwordTextField.text;
-    user.email = self.emailTextField.text;
+    user.email = [NSString stringWithFormat:@"%@%@",self.andrewIdTextField.text, @"@andrew.cmu.edu"];
     
     // other fields can be set just like with PFObject
     user[@"facebookID"] = self.facebookIdTextField.text;
@@ -181,8 +204,18 @@
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             // Hooray! Let them use the app now.
-            [self performSegueWithIdentifier:@"Register Success" sender:sender];
-            // [self shouldPerformSegueWithIdentifier:@"YES" sender:NULL];
+            /* add code for email verification */
+            if (![[user objectForKey:@"emailVerified"] boolValue]) {
+                UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"An email has been send to your andrew email to verify your CMU student identity, please check out your email to continue......"
+                                                                  message:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"OK"
+                                                        otherButtonTitles:nil];
+                [message show];
+            } else {
+                // perform segue to home view
+                [self performSegueWithIdentifier:@"Register Success" sender:sender];
+            }
         } else {
             NSString *errorString = [error userInfo][@"error"];
             // Show the errorString somewhere and let the user try again.
@@ -194,20 +227,8 @@
             [message show];
             self.andrewIdTextField.text = @"";
             self.emailTextField.text = @"";
-            // do not perform segue
-            // [self shouldPerformSegueWithIdentifier:@"NO" sender:NULL];
         }
     }];
-}
-
-// use to prevent segue from happening
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-{
-    if ([identifier isEqualToString:@"NO"]) {
-        return NO;
-    } else {
-        return YES;
-    }
 }
 
 /*

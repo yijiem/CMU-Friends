@@ -233,7 +233,7 @@
     }
     
     cell.textLabel.text =
-    [NSString stringWithFormat:@"%@", [[self.sortedNearByPeople objectAtIndex:indexPath.row] objectForKey:@"username"]];
+    [NSString stringWithFormat:@"%@", [[self.sortedNearByPeople objectAtIndex:indexPath.row] objectForKey:@"name"]];
     
     NSNumber *oneMile = [NSNumber numberWithDouble:1.0];
     //NSNumber *fiveMile = [NSNumber numberWithDouble:5.0];

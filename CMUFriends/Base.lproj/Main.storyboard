@@ -388,7 +388,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="S66-oc-srg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_icon" id="S66-oc-srg">
                                 <rect key="frame" x="15" y="109" width="85" height="89"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -512,7 +512,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cmu_dog" width="702" height="702"/>
+        <image name="cmu_dog" width="80" height="80"/>
+        <image name="default_icon" width="512" height="512"/>
         <image name="shake_1" width="300" height="300"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -521,7 +522,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ZVm-b2-Uow"/>
+        <segue reference="Qjp-dc-YcC"/>
         <segue reference="x0t-L6-cuE"/>
     </inferredMetricsTieBreakers>
 </document>

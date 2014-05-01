@@ -127,7 +127,11 @@ NSString *facebookID;
     NSData *imageData = [theImage getData];
     UIImage *image = [UIImage imageWithData:imageData];
     
-    [self.imageView setImage:image];
+    if (image == nil) {
+        // do nothing, just do not manually set image
+    } else {
+        [self.imageView setImage:image];
+    }
     
     /* set up name, gender, facebookid, email */
     self.nameText.text = [user objectForKey:@"name"];
