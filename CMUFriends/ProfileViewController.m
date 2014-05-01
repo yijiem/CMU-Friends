@@ -69,7 +69,11 @@ NSString *facebookID;
     // modified by yu zhang. To get facebook ID.
     NSString *graphPath = [NSString stringWithFormat:@"/%@", facebookID];
     
+    NSLog(@"linke: %@", graphPath);
+    
     /* make the API call */
+    
+    
     [FBRequestConnection startWithGraphPath:graphPath
                                  parameters:nil
                                  HTTPMethod:@"GET"

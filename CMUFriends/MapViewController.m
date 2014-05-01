@@ -15,6 +15,11 @@
 // added by yu zhang, for provide the parse service.
 #import <Parse/Parse.h>
 
+#import "ZSAnnotation.h"
+
+#import "UIKit/UIColor.h"
+#import "UIKit/UIInterface.h"
+
 @interface LocationViewController : UIViewController
 <CLLocationManagerDelegate>
 @end
@@ -73,6 +78,53 @@ bool firstLoad;
     }
 }
 
+//- (MKAnnotationView *)mapView:(MKMapView *)mV viewForAnnotation:(id <MKAnnotation>)annotation {
+//    
+//    // Don't mess with user location
+//    if(![annotation isKindOfClass:[ZSPinAnnotation class]])
+//        return nil;
+//    
+//    ZSPinAnnotation *a = (ZSPinAnnotation *)annotation;
+//    static NSString *defaultPinID = @"StandardIdentifier";
+//    
+//    // Create the ZSPinAnnotation object and reuse it
+//    ZSPinAnnotation *pinView = (ZSPinAnnotation *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
+//    if (pinView == nil){
+//        pinView = [[ZSPinAnnotation alloc] initWithAnnotation:annotation reuseIdentifier:defaultPinID];
+//    }
+//    
+//    // Set the type of pin to draw and the color
+//    pinView.annotationType = ZSPinAnnotationTypeStandard;
+//    pinView.annotationColor = a.color;
+//    pinView.canShowCallout = YES;
+//    
+//    return pinView;
+//    
+//}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    // Don't mess with user location
+    if(![annotation isKindOfClass:[ZSAnnotation class]])
+        return nil;
+    
+    ZSAnnotation *a = (ZSAnnotation *)annotation;
+    static NSString *defaultPinID = @"StandardIdentifier";
+    
+    // Create the ZSPinAnnotation object and reuse it
+    ZSPinAnnotation *pinView = (ZSPinAnnotation *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
+    if (pinView == nil){
+        pinView = [[ZSPinAnnotation alloc] initWithAnnotation:annotation reuseIdentifier:defaultPinID];
+    }
+    
+    // Set the type of pin to draw and the color
+    pinView.annotationType = ZSPinAnnotationTypeStandard;
+    pinView.annotationColor = a.color;
+    pinView.canShowCallout = YES;
+    
+    return pinView;
+}
+
 // added by yu zhang begin.
 // when press the button of "show nearby friends", show all the friends nearby.
 - (IBAction)showNearByFriend:(id)sender {
@@ -89,7 +141,22 @@ bool firstLoad;
 // added by yu zhang. To add a user into the map.
 -(CLLocationCoordinate2D)addAnnotationFriend: (PFUser*)user {
     // Add an annotation2
-    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+//    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+//    PFGeoPoint *location = [user objectForKey:@"location"];
+//    
+//    if (location == NULL) {
+//        //return 0;
+//        NSLog(@"The location is null!");
+//        // don't know how to deal with this. give a 0,0 position back.
+//        return CLLocationCoordinate2DMake(0,0);
+//    }
+//    
+//    CLLocationCoordinate2D userCoordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude);
+//    point.coordinate = userCoordinate;
+//    point.title = [user objectForKey:@"name"];
+//    point.subtitle = [user objectForKey:@"gender"];
+
+    ZSAnnotation *point = [[ZSAnnotation alloc] init];
     PFGeoPoint *location = [user objectForKey:@"location"];
     
     if (location == NULL) {
@@ -100,9 +167,19 @@ bool firstLoad;
     }
     
     CLLocationCoordinate2D userCoordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude);
+    
     point.coordinate = userCoordinate;
     point.title = [user objectForKey:@"name"];
     point.subtitle = [user objectForKey:@"gender"];
+    
+    // change the color of the pins.
+    if ([point.subtitle  isEqual: @"male"]) {
+        point.color = [UIColor blueColor];
+    } else if ([point.subtitle  isEqual: @"female"]) {
+        point.color = [UIColor redColor];
+    } else {
+        point.color = [UIColor purpleColor];
+    }
     
     //point.pinColor = MKPinAnnotationColorPurple;
     
