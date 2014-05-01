@@ -163,12 +163,13 @@ bool firstLoad;
     
     point.coordinate = userCoordinate;
     point.title = [user objectForKey:@"name"];
-    point.subtitle = [user objectForKey:@"gender"];
+    point.subtitle = [user objectForKey:@"department"];
+
     
     // change the color of the pins.
-    if ([point.subtitle  isEqual: @"male"]) {
+    if ([[user objectForKey:@"gender"]  isEqual: @"male"]) {
         point.color = [UIColor blueColor];
-    } else if ([point.subtitle  isEqual: @"female"]) {
+    } else if ([[user objectForKey:@"gender"]  isEqual: @"female"]) {
         point.color = [UIColor redColor];
     } else {
         point.color = [UIColor purpleColor];
