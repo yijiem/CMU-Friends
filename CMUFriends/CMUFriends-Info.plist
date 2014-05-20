@@ -26,8 +26,8 @@
 	<string>1407451212866519</string>
 	<key>FacebookDisplayName</key>
 	<string>CMUFriends</string>
-	<key>accelerometer</key>
-	<true/>
+	<key>NSMainNibFile~ipad</key>
+	<string>Main-iPad</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -40,5 +40,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>accelerometer</key>
+	<true/>
 </dict>
 </plist>

@@ -145,6 +145,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A62741F19234BE6004520EC /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		2A9095051911E56A007536BE /* ZSAnnotation */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +210,7 @@
 		610519F819077B850023AE22 /* CMUFriends */ = {
 			isa = PBXGroup;
 			children = (
+				2A62741F19234BE6004520EC /* iPad */,
 				2AD587B3190F581E00F20866 /* ProfileViewController.h */,
 				2AD587B4190F581E00F20866 /* ProfileViewController.m */,
 				2AD587B0190F580B00F20866 /* MapViewController.h */,
@@ -503,8 +511,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CMUFriends/CMUFriends-Prefix.pch";
 				INFOPLIST_FILE = "CMUFriends/CMUFriends-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -521,8 +530,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CMUFriends/CMUFriends-Prefix.pch";
 				INFOPLIST_FILE = "CMUFriends/CMUFriends-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
