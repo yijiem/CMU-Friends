@@ -10,14 +10,24 @@
 
 // added by yu zhang for map service.
 #import "MapKit/MapKit.h"
+#import <MapKit/MKAnnotation.h>
 
-
-@interface MapViewController : UIViewController
-<MKMapViewDelegate>
+// Modified by yu zhang for iOS 8 support location
+//@interface MapViewController : UIViewController
+//<MKMapViewDelegate>
 // declare the class as implementing the <MKMapViewDelegate>protocol.
 
+@interface MapViewController : UIViewController <MKMapViewDelegate,  CLLocationManagerDelegate> {
+}
 
-@property (strong, nonatomic) IBOutlet MKMapView *mapView;
+// To solve the problem that location can't be catch.
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+
+
+//@property (strong, nonatomic) IBOutlet MKMapView *mapView;
+
+@property(nonatomic, retain) IBOutlet MKMapView *mapView;
+@property(nonatomic, retain) CLLocationManager *locationManager;
 
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)changeMapType:(id)sender;

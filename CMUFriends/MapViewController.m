@@ -68,7 +68,10 @@ bool firstLoad;
 // set the range and display the location.
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    if (firstLoad == YES) {        
+//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
+//    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+    
+    if (firstLoad == YES) {
         firstLoad = NO;
         if (userIndex == -1) {
             [self zoomIn:zoomIn];
@@ -77,30 +80,6 @@ bool firstLoad;
         }
     }
 }
-
-//- (MKAnnotationView *)mapView:(MKMapView *)mV viewForAnnotation:(id <MKAnnotation>)annotation {
-//    
-//    // Don't mess with user location
-//    if(![annotation isKindOfClass:[ZSPinAnnotation class]])
-//        return nil;
-//    
-//    ZSPinAnnotation *a = (ZSPinAnnotation *)annotation;
-//    static NSString *defaultPinID = @"StandardIdentifier";
-//    
-//    // Create the ZSPinAnnotation object and reuse it
-//    ZSPinAnnotation *pinView = (ZSPinAnnotation *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
-//    if (pinView == nil){
-//        pinView = [[ZSPinAnnotation alloc] initWithAnnotation:annotation reuseIdentifier:defaultPinID];
-//    }
-//    
-//    // Set the type of pin to draw and the color
-//    pinView.annotationType = ZSPinAnnotationTypeStandard;
-//    pinView.annotationColor = a.color;
-//    pinView.canShowCallout = YES;
-//    
-//    return pinView;
-//    
-//}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
@@ -140,22 +119,6 @@ bool firstLoad;
 
 // added by yu zhang. To add a user into the map.
 -(CLLocationCoordinate2D)addAnnotation: (PFUser*)user {
-    // Add an annotation2
-//    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-//    PFGeoPoint *location = [user objectForKey:@"location"];
-//    
-//    if (location == NULL) {
-//        //return 0;
-//        NSLog(@"The location is null!");
-//        // don't know how to deal with this. give a 0,0 position back.
-//        return CLLocationCoordinate2DMake(0,0);
-//    }
-//    
-//    CLLocationCoordinate2D userCoordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude);
-//    point.coordinate = userCoordinate;
-//    point.title = [user objectForKey:@"name"];
-//    point.subtitle = [user objectForKey:@"gender"];
-
     ZSAnnotation *point = [[ZSAnnotation alloc] init];
     PFGeoPoint *location = [user objectForKey:@"location"];
     
@@ -268,11 +231,61 @@ bool firstLoad;
     
     }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+    
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager startUpdatingLocation];
+    NSLog(@"%@", [self deviceLocation]);
+    
+    //View Area
+//    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
+//    region.center.latitude = self.locationManager.location.coordinate.latitude;
+//    region.center.longitude = self.locationManager.location.coordinate.longitude;
+//    region.span.longitudeDelta = 0.005f;
+//    region.span.longitudeDelta = 0.005f;
+//    [_mapView setRegion:region animated:YES];
+    
+}
+
+
+- (NSString *)deviceLocation {
+    return [NSString stringWithFormat:@"latitude: %f longitude: %f", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
+}
+- (NSString *)deviceLat {
+    return [NSString stringWithFormat:@"%f", self.locationManager.location.coordinate.latitude];
+}
+- (NSString *)deviceLon {
+    return [NSString stringWithFormat:@"%f", self.locationManager.location.coordinate.longitude];
+}
+- (NSString *)deviceAlt {
+    return [NSString stringWithFormat:@"%f", self.locationManager.location.altitude];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
+    
+    _mapView.delegate = self;
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+#ifdef __IPHONE_8_0
+    if(IS_OS_8_OR_LATER) {
+        // Use one or the other, not both. Depending on what you put in info.plist
+        [self.locationManager requestWhenInUseAuthorization];
+        //[self.locationManager requestAlwaysAuthorization];
+    }
+#endif
+    [self.locationManager startUpdatingLocation];
+    
+//    _mapView.showsUserLocation = YES;
+//    [_mapView setMapType:MKMapTypeStandard];
+//    [_mapView setZoomEnabled:YES];
+//    [_mapView setScrollEnabled:YES];
+    
     
     // show the location of the user.
     _mapView.showsUserLocation = YES;
