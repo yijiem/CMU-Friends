@@ -5,6 +5,8 @@
 //  Created by ZHANG YU on 4/27/14.
 //  Copyright (c) 2014 cmu.08723.topcoder. All rights reserved.
 //
+// The ref:
+// http://stackoverflow.com/questions/24717547/ios-8-map-kit-obj-c-cannot-get-users-location
 
 #import "MapViewController.h"
 
